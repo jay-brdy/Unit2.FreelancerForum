@@ -1,22 +1,46 @@
 const names = ["Jay", "Adam", "Max", "Jordan", "Alyssa", "May", "Ash", "Amy", "Henry", "Anna", "Liz", "Edwin", "Charlotte", "Nick"];
-const occupations = ["psychologist", "programmer", "actor", "artist", "assassin", "activist", "composer", "singer", "educator", "DJ"];
+const occupations = ["Psychologist", "Programmer", "Actor", "Artist", "Assassin", "Activist", "Composer", "Singer", "Educator", "DJ"];
 // const maxFreelancers = 10;
 const freelancers = [
-    {name: "Alice", price: 30, occupation: "writer"},
-    {name: "Bob", price: 50, occupation: "teacher"},
-    {name: "Carol", price: 70, occupation: "programmer"}
+    {name: "Alice", price: 30, occupation: "Writer"},
+    {name: "Bob", price: 50, occupation: "Teacher"},
+    {name: "Carol", price: 70, occupation: "Programmer"}
 ];
 
 setInterval(generateRandomFreelancer, 1000);
 
+// function renderFreelancers() {
+//     const freelancerList = document.querySelector("#freelancer-list");
+//     freelancerList.innerHTML = "";
+
+//     freelancers.forEach(freelancer => {
+//         const listItem = document.createElement("li");
+//         listItem.textContent = `${freelancer.name}, ${freelancer.occupation}, starting price: $${freelancer.price.toFixed(2)}`;
+//         freelancerList.appendChild(listItem);
+//     });
+// }
 function renderFreelancers() {
     const freelancerList = document.querySelector("#freelancer-list");
     freelancerList.innerHTML = "";
 
     freelancers.forEach(freelancer => {
-        const listItem = document.createElement("li");
-        listItem.textContent = `${freelancer.name}, ${freelancer.occupation}, starting price: $${freelancer.price.toFixed(2)}`;
-        freelancerList.appendChild(listItem);
+        const freelancerDiv = document.createElement("div");
+        freelancerDiv.className = "freelancer";
+
+        const nameElement = document.createElement("span");
+        nameElement.textContent = freelancer.name;
+
+        const occupationElement = document.createElement("span");
+        occupationElement.textContent = freelancer.occupation;
+
+        const priceElement = document.createElement("span");
+        priceElement.textContent = `$${freelancer.price.toFixed(2)}`;
+
+        freelancerDiv.appendChild(nameElement);
+        freelancerDiv.appendChild(occupationElement);
+        freelancerDiv.appendChild(priceElement);
+
+        freelancerList.appendChild(freelancerDiv);
     });
 }
 
