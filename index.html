@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* Add some CSS to style the columns */
+        .freelancer {
+            display: flex;
+        }
+
+        /* Adjust the width of each column */
+        .freelancer span {
+            flex: 0 0 10%;
+            padding: 5px;
+            border: 1px solid #ccc; /* Add a border for separation */
+        }
+
+        /* Style the header row */
+        .header {
+            display: flex;
+        }
+
+        .header span {
+            flex: 0 0 10%;
+            padding: 5px;
+            font-weight: bold;
+            border: 1px solid #ccc;
+            background-color: #f0f0f0; /* Add background color to headers for differentiation */
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Freelancer Forum</h1>
+    <p>Average starting price: $<span id="average-price">0.00</span></p>
+    <h2>Available Freelancers:</h2>
+    <div class="header">
+        <span>Name</span>
+        <span>Occupation</span>
+        <span>Price</span>
+    </div>
+    <div id="freelancer-list"></div>
+
+    <script src="index.js"></script>
+</body>
+
+</html>
