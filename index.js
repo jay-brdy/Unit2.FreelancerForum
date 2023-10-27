@@ -1,20 +1,44 @@
-const names = ["Dr. Sigmund Freud", "Bill Gates", "Bruce Lee", "Keith Haring", "Lee Harvey Oswald", "Matin Luther King Jr", "Mozart", "Dolly Parton", "Liz", "Edwin"];
-const prices = [81, 99, 76, 84, 143, 66, 73, 97, 54, 50];
-const maxFreelancers = 10;
-
+const names = ["Jay", "Adam", "Max", "Jordan", "Alyssa", "May", "Ash", "Amy", "Henry", "Anna", "Liz", "Edwin", "Charlotte", "Nick"];
+const occupations = ["psychologist", "programmer", "actor", "artist", "assassin", "activist", "composer", "singer", "educator", "DJ"];
+// const maxFreelancers = 10;
 const freelancers = [
-    { name: "Dr. Sigmund Freud", price: 81, occupation: "psychologist" },
-    { name: "Bill Gates", price: 99, occupation: "programmer" },
-    { name: "Bruce Lee", price: 76, occupation: "actor" },
-    { name: "Keith Haring", price: 84, occupation: "artist" },
-    { name: "Lee Harvey Oswald", price: 143, occupation: "assassin" },
-    { name: "Martin Luther King Jr", price: 66, occupation: "activist" },
-    { name: "Mozart", price: 73, occupation: "composer" },
-    { name: "Dolly Parton", price: 97, occupation: "singer" },
-    {name: "Liz", price: 54, occupation: educator},
-    {name: "Edwin", price: 50, occupation: mentor}
+    {name: "Alice", price: 30, occupation: "writer"},
+    {name: "Bob", price: 50, occupation: "teacher"},
+    {name: "Carol", price: 70, occupation: "programmer"}
 ];
 
-const addFreelancerIntervalId = setInterval(addFreelancer, 1000);
+setInterval(generateRandomFreelancer, 1000);
 
-render();
+function renderFreelancers() {
+    const freelancerList = document.querySelector("#freelancer-list");
+    freelancerList.innerHTML = "";
+
+    freelancers.forEach(freelancer => {
+        const listItem = document.createElement("li");
+        listItem.textContent = `${freelancer.name}, ${freelancer.occupation}, starting price: $${freelancer.price.toFixed(2)}`;
+        freelancerList.appendChild(listItem);
+    });
+}
+
+function generateRandomFreelancer() {
+    // if (freelancers.length < maxFreelancers) {
+        const name = names[Math.floor(Math.random() * names.length)];
+        const occupation = occupations[Math.floor(Math.random() * occupations.length)];
+        const startingPrice = Math.floor(Math.random() * (300 - 40 + 1) + 40); // Generates a random price between 40 and 300
+
+        const newFreelancer = { name, occupation, price: startingPrice };
+        freelancers.push(newFreelancer);
+        renderFreelancers();
+        updateAveragePrice();
+    }
+
+function updateAveragePrice() {
+    const averagePriceElement = document.querySelector("#average-price");
+    const totalPrices = freelancers.reduce((sum, freelancer) => sum + freelancer.price, 0);
+    const averagePrice = totalPrices / freelancers.length;
+    averagePriceElement.textContent = averagePrice.toFixed(2); // Display average with 2 decimal places
+}
+
+// Call renderFreelancers and updateAveragePrice initially
+renderFreelancers();
+updateAveragePrice();
